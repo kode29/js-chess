@@ -20,6 +20,11 @@ function createBoard() {
         const square = document.createElement('div')
         square.classList.add('square');
         square.innerHTML = startPiece;
+        
+        // The below is the long-form of the next line
+        // square.firstChild && square.firstChild.setAttribute('draggable');
+        square.firstChild?.setAttribute('draggable');
+
         square.setAttribute('square-id', i);
         // square.classList.add('beige');
         const row = Math.floor((63-i)/ 8) + 1;
@@ -34,9 +39,19 @@ function createBoard() {
         } else if (i >= 48) {
             square.firstChild.firstChild.classList.add('white');
         }
-
         gameBoard.append(square);
     });
 }
 
 createBoard();
+
+const allSquares = document.querySelectorAll("#gameboard .square");
+
+allSquares.forEach(square => {
+    square.addEventListener('dragstart', dragStart);
+});
+
+function dragStart(e) {
+    // console.log(e);
+    
+}
