@@ -4,6 +4,8 @@
     /* background-color: black; */
     display :flex;
     flex-wrap: wrap;
+    /* position: fixed; FF hack */
+    top: 0;
 }
 .square {
     height: 100px;
@@ -17,22 +19,16 @@
     width: 75px;
     margin: 10px;
     position: relative;
-    z-index: -1;
+    z-index: -9;
 }
 path {
     position: relative;
     z-index: -10;
 }
 .piece {
-    box-sizing: border-box;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     /* Relevant so the PIECE is the primary visibile part */
     position: relative;
-    z-index: 10;
+    z-index: 1000;
 }
 .beige {
     background-color: rgb(110,100,98);
