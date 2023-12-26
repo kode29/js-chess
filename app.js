@@ -23,7 +23,7 @@ function createBoard() {
         
         // The below is the long-form of the next line
         // square.firstChild && square.firstChild.setAttribute('draggable');
-        square.firstChild?.setAttribute('draggable');
+        square.firstChild?.setAttribute('draggable', true);
 
         square.setAttribute('square-id', i);
         // square.classList.add('beige');
@@ -49,9 +49,30 @@ const allSquares = document.querySelectorAll("#gameboard .square");
 
 allSquares.forEach(square => {
     square.addEventListener('dragstart', dragStart);
+    square.addEventListener('dragover', dragOver);
+    square.addEventListener('drop', dragDrop);
 });
 
+let startPositionId;
+let draggedElement;
+
 function dragStart(e) {
-    // console.log(e);
-    
+    // console.log(e); // element - all information
+    // console.log(e.target); // where it was dropped
+    // console.log(e.target.parentNode); // parent information
+    // console.log(e.target.parentNode.getAttribute('square-id')); // get the ID of the Starting (parent) box
+    startPositionId = e.target.parentNode.getAttribute('square-id');
+    draggedElement = e.target;
+}
+
+function dragOver(e){
+    e.preventDefault(); // don't show all information during the drag
+}
+
+function dragDrop (e) {
+    e.stopPropagation();
+
+    e.target.parentNode.append(draggedElement);
+    e.target.remove();
+    // e.target.append(draggedElement);
 }

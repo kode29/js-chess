@@ -10,6 +10,18 @@
     width: 100px;
     border: 2px rgb(60,60,42) solid;
     box-sizing: border-box;
+    position: relative;
+}
+.square svg {
+    height: 75px;
+    width: 75px;
+    margin: 10px;
+    position: relative;
+    z-index: -1;
+}
+path {
+    position: relative;
+    z-index: -10;
 }
 .piece {
     box-sizing: border-box;
@@ -18,10 +30,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.piece svg {
-    height: 75px;
-    width: 75px;
+    /* Relevant so the PIECE is the primary visibile part */
+    position: relative;
+    z-index: 10;
 }
 .beige {
     background-color: rgb(110,100,98);
